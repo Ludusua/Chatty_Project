@@ -8,6 +8,7 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(xpath = "//h1[normalize-space()='Login Form']")
     private WebElement loginFormTitle;
     @FindBy(xpath = "//*[@name='email']")
@@ -19,11 +20,11 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),'Incorrect email')]")
     WebElement emailError;
     @FindBy(xpath = "//div[contains(text(),'Invalid email or password. Please try again.')]")
-    WebElement emptyPasswordFieldError;
+    WebElement invalidEmailOrPasswordFieldErrorMessage;
     @FindBy(xpath = "//div[contains(text(),'Password must be 8-100 characters and include at least one letter and one digit')]")
     WebElement shortOrInvalidPasswordFieldError;
 
-    public void waitForLoadingLoginPage(){
+    public void waitForLoadingLoginPage() {
         getWait().forVisibility(loginFormTitle);
         assertTrue(loginFormTitle.isDisplayed());
 
@@ -39,21 +40,49 @@ public class LoginPage extends BasePage {
 
     }
 
-    public void setDateLoginPage(String email,String password){
+    public void setEmailInputField(String email) {
+        emailInputField.sendKeys(email);
+    }
+
+    public void setPasswordInputField(String password) {
+        passwordInputField.sendKeys(password);
+    }
+
+    public void clickOnLoginButton() {
+        loginButton.click();
+    }
+
+
+    public void loginButtonIsNotClickable() {
+        getWait().forInClickable(loginButton);
+    }
+
+    public void setDateLoginPage(String email, String password) {
         waitForLoadingLoginPage();
         emailInputField.sendKeys(email);
         passwordInputField.sendKeys(password);
         loginButton.click();
     }
-    public void waitForEmailError(){
+
+    public boolean invalidEmailErrorMessageIsVisible() {
+        return emailError.isDisplayed();
+    }
+    public boolean emptyPasswordErrorMessageIsVisible() {
+        return invalidEmailOrPasswordFieldErrorMessage.isDisplayed();
+    }
+    public boolean invalidPasswordErrorMessageIsVisible() {
+        return shortOrInvalidPasswordFieldError.isDisplayed();
+    }
+
+    public void waitForEmailError() {
         getWait().forVisibility(emailError);
     }
 
-    public void waitForEmptyPasswordError(){
-        getWait().forVisibility(emptyPasswordFieldError);
+    public void waitForEmptyPasswordError() {
+        getWait().forVisibility(invalidEmailOrPasswordFieldErrorMessage);
     }
 
-    public void waitForShortPasswordError(){
+    public void waitForShortPasswordError() {
         getWait().forVisibility(shortOrInvalidPasswordFieldError);
     }
 }
