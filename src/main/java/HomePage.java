@@ -14,6 +14,15 @@ public class HomePage extends BasePage{
     private WebElement userImage;
     @FindBy(xpath = "//p[contains(text(),'Create a post')]")
     private WebElement createPostTitle;
+    @FindBy(xpath = "//*[@class='header__logo']")
+    private WebElement headerLogo;
+
+    @FindBy(xpath = "//span[normalize-space()='News Feed']")
+    private WebElement newsFeed;
+    @FindBy(xpath = "//span[normalize-space()='My drafts']")
+    private WebElement myDrafts;
+    @FindBy(xpath = "//*[@data-test='post-header__plus']")
+    private WebElement createPostButton;
 
     public void waitForLoadingHomePage(){
         getWait().forVisibility(userImage);
@@ -23,5 +32,22 @@ public class HomePage extends BasePage{
     }
     public boolean createPostTitleIsDisplayed(){
         return createPostTitle.isDisplayed();
+    }
+
+
+    public void clickOnHeaderLogo(){
+        getWait().forVisibility(headerLogo);
+        assertTrue(headerLogo.isDisplayed());
+        headerLogo.click();
+    }
+    public void clickOnMyDrafts(){
+        getWait().forVisibility(myDrafts);
+        assertTrue(myDrafts.isDisplayed());
+        myDrafts.click();
+    }
+    public void clickOnCreatePostButton(){
+        getWait().forVisibility(createPostButton);
+        assertTrue(createPostButton.isDisplayed());
+        createPostButton.click();
     }
 }
