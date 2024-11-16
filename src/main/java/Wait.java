@@ -56,7 +56,7 @@ public class Wait {
         try {
             setWait().until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(element)));
         } catch (TimeoutException e) {
-            throw new TimeoutException(element.getAccessibleName() + " is not clickable more than " + TIMEOUT.toString());
+            throw new TimeoutException(element.getAccessibleName() + " is clickable more than " + TIMEOUT.toString());
         }
     }
 

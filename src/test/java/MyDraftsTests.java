@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MyDraftsTests extends BaseTest{
@@ -19,5 +20,19 @@ MyDraftsPage myDraftsPage;
         myDraftsPage = new MyDraftsPage(driver);
         myDraftsPage.waitForLoadingMyDraftsPage();
         assertTrue(myDraftsPage.emptyDraftsMessageIsDisplayed());
+    }
+    @Test
+    public void myDraftsPageIsNotEmptyTest() {
+        String email = "Virthunter@gmail.com";
+        String password = "Chatty12";
+        loginPage = new LoginPage(driver);
+        loginPage.setDateLoginPage(email, password);
+        homePage = new HomePage(driver);
+        homePage.waitForLoadingHomePage();
+        assertTrue(homePage.createPostTitleIsDisplayed());
+        homePage.clickOnMyDrafts();
+        myDraftsPage = new MyDraftsPage(driver);
+        myDraftsPage.waitForLoadingMyDraftsPage();
+        assertFalse(myDraftsPage.emptyDraftsMessageIsDisplayed());
     }
 }

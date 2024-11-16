@@ -1,17 +1,24 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
+import java.lang.reflect.Method;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTest extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
 
+
     @Test
     public void positiveLoginTest() {
-        String email = "Virthunter@gmail.com";
-        String password = "Chatty12";
+
         loginPage = new LoginPage(driver);
-        loginPage.setDateLoginPage(email, password);
+        loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
@@ -19,34 +26,23 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void emptyEmailLoginTest() {
-        String password = "Chatty12";
         loginPage = new LoginPage(driver);
-        loginPage.waitForLoadingLoginPage();
-        loginPage.setEmailInputField("");
-        loginPage.setPasswordInputField(password);
+        loginPage.setDateLoginPage(EMPTY_EMAIL, VALID_PASSWORD);
         loginPage.loginButtonIsNotClickable();
     }
 
     @Test
     public void invalidEmailLoginTest() {
-        String invalidEmail = "Virthuntergmail.com";
-        String password = "Chatty12";
         loginPage = new LoginPage(driver);
-        loginPage.waitForLoadingLoginPage();
-        loginPage.setEmailInputField(invalidEmail);
-        loginPage.setPasswordInputField(password);
+        loginPage.setDateLoginPage(INVALID_EMAIL, VALID_PASSWORD);
         loginPage.loginButtonIsNotClickable();
         assertTrue(loginPage.invalidEmailErrorMessageIsVisible());
     }
 
     @Test
     public void emptyPasswordLoginTest() {
-        String validEmail = "Virthunter@gmail.com";
-        String password = "";
         loginPage = new LoginPage(driver);
-        loginPage.waitForLoadingLoginPage();
-        loginPage.setEmailInputField(validEmail);
-        loginPage.setPasswordInputField(password);
+        loginPage.setDateLoginPage(VALID_EMAIL, INVALID_EMPTY_PASSWORD);
         loginPage.clickOnLoginButton();
         loginPage.waitForEmptyPasswordError();
         assertTrue(loginPage.emptyPasswordErrorMessageIsVisible());
@@ -54,38 +50,56 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void invalidShortPasswordLoginTest() {
-        String validEmail = "Virthunter@gmail.com";
-        String shortPassword = "invalid";
         loginPage = new LoginPage(driver);
-        loginPage.waitForLoadingLoginPage();
-        loginPage.setEmailInputField(validEmail);
-        loginPage.setPasswordInputField(shortPassword);
+        loginPage.setDateLoginPage(VALID_EMAIL, INVALID_SHORT_PASSWORD);
         loginPage.loginButtonIsNotClickable();
         loginPage.waitForShortPasswordError();
         assertTrue(loginPage.invalidPasswordErrorMessageIsVisible());
     }
+
     @Test
     public void invalidNoDigitPasswordLoginTest() {
-        String validEmail = "Virthunter@gmail.com";
-        String noDigitPassword = "invalidPasswordNoDigit";
         loginPage = new LoginPage(driver);
-        loginPage.waitForLoadingLoginPage();
-        loginPage.setEmailInputField(validEmail);
-        loginPage.setPasswordInputField(noDigitPassword);
+        loginPage.setDateLoginPage(VALID_EMAIL, INVALID_NO_DIGIT_PASSWORD);
         loginPage.loginButtonIsNotClickable();
         loginPage.waitForShortPasswordError();
         assertTrue(loginPage.invalidPasswordErrorMessageIsVisible());
     }
+
     @Test
     public void invalidNoLetterPasswordLoginTest() {
-        String validEmail = "Virthunter@gmail.com";
-        String noLetterPassword = "123456789";
         loginPage = new LoginPage(driver);
-        loginPage.waitForLoadingLoginPage();
-        loginPage.setEmailInputField(validEmail);
-        loginPage.setPasswordInputField(noLetterPassword);
+        loginPage.setDateLoginPage(VALID_EMAIL, INVALID_NO_LETTER_PASSWORD);
         loginPage.loginButtonIsNotClickable();
         loginPage.waitForShortPasswordError();
         assertTrue(loginPage.invalidPasswordErrorMessageIsVisible());
     }
+
+    //@ParameterizedTest
+    @MethodSource("validData")
+    public void loginParamTest(String email, String password) {
+        loginPage = new LoginPage(driver);
+        loginPage.waitForLoadingLoginPage();
+        loginPage.setEmailInputField(email);
+        loginPage.setPasswordInputField(password);
+        loginPage.loginButtonIsNotClickable();
+        if (!email.equals("Virthunter@gmail.com")) {
+            assertTrue(loginPage.invalidEmailErrorMessageIsVisible());
+        } else if (password.isEmpty()) {
+            assertTrue(loginPage.emptyPasswordErrorMessageIsVisible());
+        } else {
+            assertTrue(loginPage.invalidPasswordErrorMessageIsVisible());
+        }
+    }
+
+    static Stream<Arguments> validData() {
+        return Stream.of(
+                Arguments.arguments("Virthuntergmail.com", "Chatty12"),
+                // Arguments.arguments("Virthunter@gmail.com", ""),
+                Arguments.arguments("Virthunter@gmail.com", "invalid"),
+                Arguments.arguments("Virthunter@gmail.com", "invalidPasswordNoDigit"),
+                Arguments.arguments("Virthunter@gmail.com", "123456789")
+        );
+    }
+
 }

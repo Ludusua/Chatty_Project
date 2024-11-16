@@ -14,7 +14,7 @@ public class PostPage extends BasePage{
     private WebElement descriptionInputField;
     @FindBy(xpath = "//*[@name='content']")
     private WebElement contentDescriptionInputField;
-    @FindBy(xpath = "//*[@id='draftCheckbox']")
+    @FindBy(xpath = "//*[@for='draftCheckbox']")
     private WebElement saveAsDraftSwitcher;
     @FindBy(xpath = "//*[@data-test='submit']")
     private WebElement submitButton;

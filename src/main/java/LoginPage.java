@@ -57,6 +57,7 @@ public class LoginPage extends BasePage {
         getWait().forInClickable(loginButton);
     }
 
+
     public void setDateLoginPage(String email, String password) {
         waitForLoadingLoginPage();
         emailInputField.sendKeys(email);
