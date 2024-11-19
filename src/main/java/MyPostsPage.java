@@ -1,3 +1,4 @@
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +15,7 @@ public class MyPostsPage extends BasePage {
     private WebElement nameOfPost;
     @FindBy(xpath = "//p[normalize-space()='18.11.2024']")
     private List<WebElement> dataCreatingPost;
-    @FindBy(xpath = "//*[@class='post-content__top']/h3")
+    @FindBy(xpath = "//*[@class='post-content']/div/h3")
     private List<WebElement> postsTitleList;
     @FindBy(xpath = "//h3[normalize-space()='Create Post With Selenium For Deleting']")
     private WebElement nameOfPostDeleting;
@@ -22,12 +23,15 @@ public class MyPostsPage extends BasePage {
 
     public void findMyPostByNameAndClick(String nameThePost) {
         for (WebElement post : postsTitleList) {
-            if (post.getText().contains(nameThePost)) {
-                post.click();
-            } else {
-                System.out.println("Post " + nameThePost + " not found");
+            try {
+                if (post.getText().contains(nameThePost)) {
+                    post.click();
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException(nameThePost +" is not found");
+
             }
-            break;
         }
     }
 
@@ -35,7 +39,8 @@ public class MyPostsPage extends BasePage {
         getWait().forVisibility(nameOfPostDeleting);
         nameOfPostDeleting.click();
     }
-    public void allListOfPostsIsVisible () {
+
+    public void allListOfPostsIsVisible() {
         getWait().forAllVisibility(postsTitleList);
     }
 
