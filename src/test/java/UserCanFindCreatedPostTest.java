@@ -7,11 +7,10 @@ public class UserCanFindCreatedPostTest extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
     PostPage postPage;
-
     MyPostsPage myPostsPage;
 
     @Test
-    public void userCanFindThePostTest() throws InterruptedException {
+    public void userCanFindThePostTest() {
         String nameThePost = "Create Post With Selenium For Deleting";
         String date = "18.11.2024";
         loginPage = new LoginPage(driver);
@@ -21,7 +20,6 @@ public class UserCanFindCreatedPostTest extends BaseTest {
         assertTrue(homePage.createPostTitleIsDisplayed());
         homePage.clickOnMyPostsSwitcher();
         myPostsPage = new MyPostsPage(driver);
-        Thread.sleep(4000);
         assertTrue(myPostsPage.findMyPostByNameAndDate(nameThePost, date));
         //myPostsPage.findMyPostByName("Not");
         // myPostsPage.nameOfPostIsVisible();
