@@ -13,7 +13,7 @@ public class UserCanFindCreatedPostTest extends BaseTest {
 
     @Test
     public void userCanFindThePostTest() throws InterruptedException {
-        String nameThePost = "Create Post With Selaenium For Deleting";
+        String nameThePost = "Create Post With Selenium For Deleting";
         loginPage = new LoginPage(driver);
         loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
@@ -25,6 +25,6 @@ public class UserCanFindCreatedPostTest extends BaseTest {
         myPostsPage.findMyPostByNameAndClick(nameThePost);
         onePostPage = new OnePostPage(driver);
         Thread.sleep(300);
-       // assertEquals(nameThePost,onePostPage.getNameOfPost());
+        assertEquals(nameThePost,onePostPage.getNameOfPost());
     }
 }
