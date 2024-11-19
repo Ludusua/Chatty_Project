@@ -75,7 +75,8 @@ public class LoginTest extends BaseTest {
         assertTrue(loginPage.invalidPasswordErrorMessageIsVisible());
     }
 
-    //@ParameterizedTest
+//////////////////////////////////////////With ParameterizedTest///////////////////////////////////////
+    @ParameterizedTest
     @MethodSource("validData")
     public void loginParamTest(String email, String password) {
         loginPage = new LoginPage(driver);

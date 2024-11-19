@@ -10,7 +10,8 @@ public class PostPage extends BasePage {
     }
 
     private static final String FILE_SEPARATOR = System.getProperty("file.separator");
-    private static final String ABSOLUTEPATH = "C:"+ FILE_SEPARATOR +"Users"+FILE_SEPARATOR +"Dell"+FILE_SEPARATOR +"IdeaProjects"+FILE_SEPARATOR +"Chatty_Project"+FILE_SEPARATOR +"src"+FILE_SEPARATOR +"main"+FILE_SEPARATOR +"resources"+FILE_SEPARATOR +"books.png";
+    private static final String ABSOLUTEPATHFORCREATING = "C:"+ FILE_SEPARATOR +"Users"+FILE_SEPARATOR +"Dell"+FILE_SEPARATOR +"IdeaProjects"+FILE_SEPARATOR +"Chatty_Project"+FILE_SEPARATOR +"src"+FILE_SEPARATOR +"main"+FILE_SEPARATOR +"resources"+FILE_SEPARATOR +"books.png";
+    private static final String ABSOLUTEPATHFORDELETING = "C:"+ FILE_SEPARATOR +"Users"+FILE_SEPARATOR +"Dell"+FILE_SEPARATOR +"IdeaProjects"+FILE_SEPARATOR +"Chatty_Project"+FILE_SEPARATOR +"src"+FILE_SEPARATOR +"main"+FILE_SEPARATOR +"resources"+FILE_SEPARATOR +"DeleteButton.png";
     @FindBy(xpath = "//input[@placeholder='Title']")
     private WebElement titleInputField;
     @FindBy(xpath = "//*[@placeholder='Description']")
@@ -71,8 +72,11 @@ public class PostPage extends BasePage {
         submitButton.click();
     }
 
-    public void uploadImage() {
-        imageUploadField.sendKeys(ABSOLUTEPATH);
+    public void uploadImageForCreatingPost() {
+        imageUploadField.sendKeys(ABSOLUTEPATHFORCREATING);
+    }
+    public void uploadImageForDeletingPost() {
+        imageUploadField.sendKeys(ABSOLUTEPATHFORDELETING);
     }
 
 }

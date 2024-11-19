@@ -25,7 +25,7 @@ public class UserCanCreatePostTest extends BaseTest {
         postPage = new PostPage(driver);
         postPage.waitForLoadingAllFields();
         postPage.setPostData(postTitle,description,contentDescription);
-        postPage.uploadImage();
+        postPage.uploadImageForCreatingPost();
         postPage.waitForLoadingImage();
         postPage.clickSubmitButton();
     }
@@ -64,13 +64,32 @@ public class UserCanCreatePostTest extends BaseTest {
         postPage = new PostPage(driver);
         postPage.waitForLoadingAllFields();
         postPage.setPostData(postTitle,description,contentDescription);
-        postPage.uploadImage();
+        postPage.uploadImageForCreatingPost();
         postPage.waitForLoadingImage();
         postPage.clickOnTheSaveAsDraftSwitcher();
         postPage.clickSubmitButton();
         homePage.clickOnMyDrafts();
         myDraftsPage = new MyDraftsPage(driver);
         myDraftsPage.waitForLoadingMyDraftsPage();
-
+    }
+    @Test
+    public void positivePostCreatingWithImageForDeleting() {
+        String postTitle = "Create Post With Selenium For Deleting";
+        String description = "Create Post With Selenium By Rudenko Vitalii";
+        String contentDescription = "Post has been successfully created with Image for deleting!";
+        String email = "Virthunter@gmail.com";
+        String password = "Chatty12";
+        loginPage = new LoginPage(driver);
+        loginPage.setDateLoginPage(email, password);
+        homePage = new HomePage(driver);
+        homePage.waitForLoadingHomePage();
+        assertTrue(homePage.createPostTitleIsDisplayed());
+        homePage.clickOnCreatePostButton();
+        postPage = new PostPage(driver);
+        postPage.waitForLoadingAllFields();
+        postPage.setPostData(postTitle,description,contentDescription);
+        postPage.uploadImageForDeletingPost();
+        postPage.waitForLoadingImage();
+        postPage.clickSubmitButton();
     }
 }
