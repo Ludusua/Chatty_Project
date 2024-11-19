@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class UserCanCreatePostTest extends BaseTest {
     LoginPage loginPage;
     HomePage homePage;
-    PostPage postPage;
+    CreatePostPage createPostPage;
     MyDraftsPage myDraftsPage;
 
     @Test
@@ -22,12 +22,12 @@ public class UserCanCreatePostTest extends BaseTest {
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
         homePage.clickOnCreatePostButton();
-        postPage = new PostPage(driver);
-        postPage.waitForLoadingAllFields();
-        postPage.setPostData(postTitle,description,contentDescription);
-        postPage.uploadImageForCreatingPost();
-        postPage.waitForLoadingImage();
-        postPage.clickSubmitButton();
+        createPostPage = new CreatePostPage(driver);
+        createPostPage.waitForLoadingAllFields();
+        createPostPage.setPostData(postTitle,description,contentDescription);
+        createPostPage.uploadImageForCreatingPost();
+        createPostPage.waitForLoadingImage();
+        createPostPage.clickSubmitButton();
     }
 
     @Test
@@ -43,10 +43,10 @@ public class UserCanCreatePostTest extends BaseTest {
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
         homePage.clickOnCreatePostButton();
-        postPage = new PostPage(driver);
-        postPage.waitForLoadingAllFields();
-        postPage.setPostData(postTitle,description,contentDescription);
-        postPage.clickSubmitButton();
+        createPostPage = new CreatePostPage(driver);
+        createPostPage.waitForLoadingAllFields();
+        createPostPage.setPostData(postTitle,description,contentDescription);
+        createPostPage.clickSubmitButton();
     }
     @Test
     public void positivePostCreatingAndSaveLikeDraftTest() {
@@ -61,13 +61,13 @@ public class UserCanCreatePostTest extends BaseTest {
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
         homePage.clickOnCreatePostButton();
-        postPage = new PostPage(driver);
-        postPage.waitForLoadingAllFields();
-        postPage.setPostData(postTitle,description,contentDescription);
-        postPage.uploadImageForCreatingPost();
-        postPage.waitForLoadingImage();
-        postPage.clickOnTheSaveAsDraftSwitcher();
-        postPage.clickSubmitButton();
+        createPostPage = new CreatePostPage(driver);
+        createPostPage.waitForLoadingAllFields();
+        createPostPage.setPostData(postTitle,description,contentDescription);
+        createPostPage.uploadImageForCreatingPost();
+        createPostPage.waitForLoadingImage();
+        createPostPage.clickOnTheSaveAsDraftSwitcher();
+        createPostPage.clickSubmitButton();
         homePage.clickOnMyDrafts();
         myDraftsPage = new MyDraftsPage(driver);
         myDraftsPage.waitForLoadingMyDraftsPage();
@@ -85,11 +85,11 @@ public class UserCanCreatePostTest extends BaseTest {
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
         homePage.clickOnCreatePostButton();
-        postPage = new PostPage(driver);
-        postPage.waitForLoadingAllFields();
-        postPage.setPostData(postTitle,description,contentDescription);
-        postPage.uploadImageForDeletingPost();
-        postPage.waitForLoadingImage();
-        postPage.clickSubmitButton();
+        createPostPage = new CreatePostPage(driver);
+        createPostPage.waitForLoadingAllFields();
+        createPostPage.setPostData(postTitle,description,contentDescription);
+        createPostPage.uploadImageForDeletingPost();
+        createPostPage.waitForLoadingImage();
+        createPostPage.clickSubmitButton();
     }
 }

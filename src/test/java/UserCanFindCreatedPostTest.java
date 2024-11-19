@@ -1,18 +1,19 @@
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserCanFindCreatedPostTest extends BaseTest {
 
     LoginPage loginPage;
     HomePage homePage;
-    PostPage postPage;
+    CreatePostPage createPostPage;
     MyPostsPage myPostsPage;
+    OnePostPage onePostPage;
 
     @Test
     public void userCanFindThePostTest() {
         String nameThePost = "Create Post With Selenium For Deleting";
-        String date = "18.11.2024";
         loginPage = new LoginPage(driver);
         loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
@@ -20,8 +21,9 @@ public class UserCanFindCreatedPostTest extends BaseTest {
         assertTrue(homePage.createPostTitleIsDisplayed());
         homePage.clickOnMyPostsSwitcher();
         myPostsPage = new MyPostsPage(driver);
-        assertTrue(myPostsPage.findMyPostByNameAndDate(nameThePost, date));
-        //myPostsPage.findMyPostByName("Not");
-        // myPostsPage.nameOfPostIsVisible();
+        myPostsPage.allListOfPostsIsVisible();
+        myPostsPage.findMyPostByNameAndClick(nameThePost);
+        onePostPage = new OnePostPage(driver);
+        assertEquals(onePostPage.getNameOfPost(),nameThePost);
     }
 }

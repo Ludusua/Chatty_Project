@@ -4,8 +4,8 @@ import org.openqa.selenium.support.FindBy;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class PostPage extends BasePage {
-    public PostPage(WebDriver driver) {
+public class CreatePostPage extends BasePage {
+    public CreatePostPage(WebDriver driver) {
         super(driver);
     }
 

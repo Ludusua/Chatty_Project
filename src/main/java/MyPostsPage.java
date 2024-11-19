@@ -14,35 +14,35 @@ public class MyPostsPage extends BasePage {
     private WebElement nameOfPost;
     @FindBy(xpath = "//p[normalize-space()='18.11.2024']")
     private List<WebElement> dataCreatingPost;
-    @FindBy(xpath = "//*[@class='post-content']")
-    private List<WebElement> postsList;
+    @FindBy(xpath = "//*[@class='post-content__top']/h3")
+    private List<WebElement> postsTitleList;
+    @FindBy(xpath = "//h3[normalize-space()='Create Post With Selenium For Deleting']")
+    private WebElement nameOfPostDeleting;
 
-    public boolean findMyPostByNameAndDate(String nameThePost, String date) {
-        boolean isDisplayed = false;
-        for (WebElement post : postsList) {
-            if (post.getText().equals(date) && post.getText().contains(nameThePost)) {
+
+    public void findMyPostByNameAndClick(String nameThePost) {
+        for (WebElement post : postsTitleList) {
+            if (post.getText().contains(nameThePost)) {
                 post.click();
-                isDisplayed=true;
-                break;
+            } else {
+                System.out.println("Post " + nameThePost + " not found");
             }
-        }return isDisplayed;
+            break;
+        }
     }
 
-    public void findMyPostByName(String nameThePost) {
-        try {
-            for (WebElement post : postsList) {
-                if (post.getText().contains(nameThePost)) {
-                    post.click();
-                    break;
-                }
-            }
-        } catch (Exception exception) {
-            System.out.println("Post not found");
-        }
+    public void clickNameOfPostDeleting() {
+        getWait().forVisibility(nameOfPostDeleting);
+        nameOfPostDeleting.click();
+    }
+    public void allListOfPostsIsVisible () {
+        getWait().forAllVisibility(postsTitleList);
     }
 
     public boolean nameOfPostIsVisible() {
         getWait().forVisibility(nameOfPost);
         return nameOfPost.isDisplayed();
     }
+
+
 }
