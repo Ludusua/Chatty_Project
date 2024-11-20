@@ -8,6 +8,8 @@ public class OnePostPage extends BasePage{
     }
     @FindBy(xpath = "//*[@class='post-content__top']/h3")
     private WebElement titleOfMyPost;
+    @FindBy(xpath = "//*[@class='post-content__top']/p")
+    private WebElement dateOfMyPost;
 
     public String getNameOfPost(){
         getWait().forVisibility(titleOfMyPost);

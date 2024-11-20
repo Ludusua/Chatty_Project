@@ -1,4 +1,3 @@
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,18 +19,33 @@ public class MyPostsPage extends BasePage {
     @FindBy(xpath = "//h3[normalize-space()='Create Post With Selenium For Deleting']")
     private WebElement nameOfPostDeleting;
 
+    // "//h3[contains(text(),'Добавь опции')]
 
+//    public void findMyPostByNameAndClick(String nameThePost) {
+//        for (WebElement post : postsTitleList) {
+//            if (post.getText().contains(nameThePost)) {
+//                post.click();
+//                break;
+//            }
+//
+//        }
+//
+//    }
+
+    public int getCountOfPosts(){
+        return postsTitleList.size();
+    }
     public void findMyPostByNameAndClick(String nameThePost) {
-        for (WebElement post : postsTitleList) {
-            try {
+        try {
+            for (WebElement post : postsTitleList) {
                 if (post.getText().contains(nameThePost)) {
                     post.click();
                     break;
                 }
-            } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException(nameThePost +" is not found");
-
             }
+        } catch (Exception e)
+        {
+            throw new RuntimeException(nameThePost + " not found");
         }
     }
 
