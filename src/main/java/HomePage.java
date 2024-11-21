@@ -2,8 +2,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HomePage extends BasePage {
@@ -36,6 +34,9 @@ public class HomePage extends BasePage {
         myPostsSwitcher.click();
     }
 
+    public boolean homePageIsVisible(){
+        return driver.getCurrentUrl().endsWith("/homeblog");
+    }
     public void clickOnCreatedForDeletingPost() {
         createdForDeletingPost.click();
     }

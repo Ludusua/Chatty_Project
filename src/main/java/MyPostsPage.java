@@ -32,9 +32,21 @@ public class MyPostsPage extends BasePage {
 //
 //    }
 
-    public int getCountOfPosts(){
+    public int getCountOfPosts() {
         return postsTitleList.size();
     }
+
+    public boolean findDeletedPost(String deletedPostName) {
+        boolean postIsDeleted = true;
+        for (WebElement post : postsTitleList) {
+            if (post.getText().contains(deletedPostName)) {
+                postIsDeleted = false;
+                break;
+            }
+        }
+        return postIsDeleted;
+    }
+
     public void findMyPostByNameAndClick(String nameThePost) {
         try {
             for (WebElement post : postsTitleList) {
@@ -43,8 +55,7 @@ public class MyPostsPage extends BasePage {
                     break;
                 }
             }
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new RuntimeException(nameThePost + " not found");
         }
     }
