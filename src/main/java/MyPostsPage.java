@@ -19,19 +19,6 @@ public class MyPostsPage extends BasePage {
     @FindBy(xpath = "//h3[normalize-space()='Create Post With Selenium For Deleting']")
     private WebElement nameOfPostDeleting;
 
-    // "//h3[contains(text(),'Добавь опции')]
-
-//    public void findMyPostByNameAndClick(String nameThePost) {
-//        for (WebElement post : postsTitleList) {
-//            if (post.getText().contains(nameThePost)) {
-//                post.click();
-//                break;
-//            }
-//
-//        }
-//
-//    }
-
     public int getCountOfPosts() {
         return postsTitleList.size();
     }

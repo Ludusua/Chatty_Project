@@ -24,7 +24,7 @@ public class UserCanCreatePostTest extends BaseTest {
         homePage.clickOnCreatePostButton();
         createPostPage = new CreatePostPage(driver);
         createPostPage.waitForLoadingAllFields();
-        createPostPage.setPostData(postTitle,description,contentDescription);
+        createPostPage.setPostData(postTitle, description, contentDescription);
         createPostPage.uploadImageForCreatingPost();
         createPostPage.waitForLoadingImage();
         createPostPage.clickSubmitButton();
@@ -45,9 +45,10 @@ public class UserCanCreatePostTest extends BaseTest {
         homePage.clickOnCreatePostButton();
         createPostPage = new CreatePostPage(driver);
         createPostPage.waitForLoadingAllFields();
-        createPostPage.setPostData(postTitle,description,contentDescription);
+        createPostPage.setPostData(postTitle, description, contentDescription);
         createPostPage.clickSubmitButton();
     }
+
     @Test
     public void positivePostCreatingAndSaveLikeDraftTest() {
         String postTitle = "Create Post With Selenium";
@@ -63,7 +64,7 @@ public class UserCanCreatePostTest extends BaseTest {
         homePage.clickOnCreatePostButton();
         createPostPage = new CreatePostPage(driver);
         createPostPage.waitForLoadingAllFields();
-        createPostPage.setPostData(postTitle,description,contentDescription);
+        createPostPage.setPostData(postTitle, description, contentDescription);
         createPostPage.uploadImageForCreatingPost();
         createPostPage.waitForLoadingImage();
         createPostPage.clickOnTheSaveAsDraftSwitcher();
@@ -72,6 +73,7 @@ public class UserCanCreatePostTest extends BaseTest {
         myDraftsPage = new MyDraftsPage(driver);
         myDraftsPage.waitForLoadingMyDraftsPage();
     }
+
     @Test
     public void positivePostCreatingWithImageForDeleting() {
         String postTitle = "Create Post With Selenium For Deleting";
@@ -87,7 +89,7 @@ public class UserCanCreatePostTest extends BaseTest {
         homePage.clickOnCreatePostButton();
         createPostPage = new CreatePostPage(driver);
         createPostPage.waitForLoadingAllFields();
-        createPostPage.setPostData(postTitle,description,contentDescription);
+        createPostPage.setPostData(postTitle, description, contentDescription);
         createPostPage.uploadImageForDeletingPost();
         createPostPage.waitForLoadingImage();
         createPostPage.clickSubmitButton();

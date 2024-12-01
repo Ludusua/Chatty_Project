@@ -3,10 +3,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MyDraftsTests extends BaseTest{
-LoginPage loginPage;
-HomePage homePage;
-MyDraftsPage myDraftsPage;
+public class MyDraftsTests extends BaseTest {
+    LoginPage loginPage;
+    HomePage homePage;
+    MyDraftsPage myDraftsPage;
+
     @Test
     public void myDraftsPageIsEmptyTest() {
         String email = "Virthunter@gmail.com";
@@ -21,6 +22,7 @@ MyDraftsPage myDraftsPage;
         myDraftsPage.waitForLoadingMyDraftsPage();
         assertTrue(myDraftsPage.emptyDraftsMessageIsDisplayed());
     }
+
     @Test
     public void myDraftsPageIsNotEmptyTest() {
         String email = "Virthunter@gmail.com";

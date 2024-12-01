@@ -1,10 +1,6 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -40,8 +36,6 @@ public class LoginPage extends BasePage {
 
         getWait().forVisibility(loginButton);
         assertTrue(loginButton.isDisplayed());
-
-
     }
 
     public void setEmailInputField(String email) {
@@ -54,11 +48,11 @@ public class LoginPage extends BasePage {
 
     public void clickOnLoginButton() {
         loginButton.click();
-
-    }public void loginButtonIsNotClickable() {
-        getWait().forInClickable(loginButton);
     }
 
+    public void loginButtonIsNotClickable() {
+        getWait().forInClickable(loginButton);
+    }
 
     public void setDateLoginPage(String email, String password) {
         waitForLoadingLoginPage();
@@ -70,9 +64,11 @@ public class LoginPage extends BasePage {
     public boolean invalidEmailErrorMessageIsVisible() {
         return emailError.isDisplayed();
     }
+
     public boolean emptyPasswordErrorMessageIsVisible() {
         return invalidEmailOrPasswordFieldErrorMessage.isDisplayed();
     }
+
     public boolean invalidPasswordErrorMessageIsVisible() {
         return shortOrInvalidPasswordFieldError.isDisplayed();
     }

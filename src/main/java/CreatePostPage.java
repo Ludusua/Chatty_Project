@@ -10,8 +10,8 @@ public class CreatePostPage extends BasePage {
     }
 
     private static final String FILE_SEPARATOR = System.getProperty("file.separator");
-    private static final String ABSOLUTEPATHFORCREATING = "C:"+ FILE_SEPARATOR +"Users"+FILE_SEPARATOR +"Dell"+FILE_SEPARATOR +"IdeaProjects"+FILE_SEPARATOR +"Chatty_Project"+FILE_SEPARATOR +"src"+FILE_SEPARATOR +"main"+FILE_SEPARATOR +"resources"+FILE_SEPARATOR +"books.png";
-    private static final String ABSOLUTEPATHFORDELETING = "C:"+ FILE_SEPARATOR +"Users"+FILE_SEPARATOR +"Dell"+FILE_SEPARATOR +"IdeaProjects"+FILE_SEPARATOR +"Chatty_Project"+FILE_SEPARATOR +"src"+FILE_SEPARATOR +"main"+FILE_SEPARATOR +"resources"+FILE_SEPARATOR +"DeleteButton.png";
+    private static final String ABSOLUTEPATHFORCREATING = "C:" + FILE_SEPARATOR + "Users" + FILE_SEPARATOR + "Dell" + FILE_SEPARATOR + "IdeaProjects" + FILE_SEPARATOR + "Chatty_Project" + FILE_SEPARATOR + "src" + FILE_SEPARATOR + "main" + FILE_SEPARATOR + "resources" + FILE_SEPARATOR + "books.png";
+    private static final String ABSOLUTEPATHFORDELETING = "C:" + FILE_SEPARATOR + "Users" + FILE_SEPARATOR + "Dell" + FILE_SEPARATOR + "IdeaProjects" + FILE_SEPARATOR + "Chatty_Project" + FILE_SEPARATOR + "src" + FILE_SEPARATOR + "main" + FILE_SEPARATOR + "resources" + FILE_SEPARATOR + "DeleteButton.png";
     @FindBy(xpath = "//input[@placeholder='Title']")
     private WebElement titleInputField;
     @FindBy(xpath = "//*[@placeholder='Description']")
@@ -22,11 +22,8 @@ public class CreatePostPage extends BasePage {
     private WebElement saveAsDraftSwitcher;
     @FindBy(xpath = "//*[@data-test='submit']")
     private WebElement submitButton;
-
     @FindBy(xpath = "//*[@accept='image/png,.png,image/jpg,.jpg,image/jpeg,.jpeg']")
     private WebElement imageUploadField;
-
-
     @FindBy(xpath = "//*[@data-test='uploaded-image']")
     private WebElement uploadedImage;
 
@@ -75,6 +72,7 @@ public class CreatePostPage extends BasePage {
     public void uploadImageForCreatingPost() {
         imageUploadField.sendKeys(ABSOLUTEPATHFORCREATING);
     }
+
     public void uploadImageForDeletingPost() {
         imageUploadField.sendKeys(ABSOLUTEPATHFORDELETING);
     }

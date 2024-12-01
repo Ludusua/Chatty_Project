@@ -16,7 +16,6 @@ public class HomePage extends BasePage {
     private WebElement createPostTitle;
     @FindBy(xpath = "//*[@class='header__logo']")
     private WebElement headerLogo;
-
     @FindBy(xpath = "//span[normalize-space()='News Feed']")
     private WebElement newsFeed;
     @FindBy(xpath = "//span[normalize-space()='My drafts']")
@@ -25,7 +24,6 @@ public class HomePage extends BasePage {
     private WebElement createPostButton;
     @FindBy(xpath = "//h3[normalize-space()='Create Post With Selenium For Deleting']")
     private WebElement createdForDeletingPost;
-
     @FindBy(xpath = "//*[@for='myPostsId']")
     private WebElement myPostsSwitcher;
 
@@ -34,9 +32,10 @@ public class HomePage extends BasePage {
         myPostsSwitcher.click();
     }
 
-    public boolean homePageIsVisible(){
+    public boolean homePageIsVisible() {
         return driver.getCurrentUrl().endsWith("/homeblog");
     }
+
     public void clickOnCreatedForDeletingPost() {
         createdForDeletingPost.click();
     }
