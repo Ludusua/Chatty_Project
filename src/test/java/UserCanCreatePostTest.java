@@ -8,23 +8,24 @@ public class UserCanCreatePostTest extends BaseTest {
     HomePage homePage;
     CreatePostPage createPostPage;
     MyDraftsPage myDraftsPage;
+    public static final String POST_TITLE = "Create Post With Selenium";
+    public static final String POST_TITLE_FOR_DELETING = "Create Post With Selenium For Deleting";
+    public static final String POST_DESCRIPTION = "Create Post With Selenium By Rudenko Vitalii";
+    public static final String CONTENT_DESCRIPTION_IMAGE = "Create Post With Selenium By Rudenko Vitalii";
+    public static final String CONTENT_DESCRIPTION_NO_IMAGE = "Post has been successfully created without Image!";
+
 
     @Test
     public void positivePostCreatingTestWithImage() {
-        String postTitle = "Create Post With Selenium";
-        String description = "Create Post With Selenium By Rudenko Vitalii";
-        String contentDescription = "Post has been successfully created with Image! ";
-        String email = "Virthunter@gmail.com";
-        String password = "Chatty12";
         loginPage = new LoginPage(driver);
-        loginPage.setDateLoginPage(email, password);
+        loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
         homePage.clickOnCreatePostButton();
         createPostPage = new CreatePostPage(driver);
         createPostPage.waitForLoadingAllFields();
-        createPostPage.setPostData(postTitle, description, contentDescription);
+        createPostPage.setPostData(POST_TITLE, POST_DESCRIPTION, CONTENT_DESCRIPTION_IMAGE);
         createPostPage.uploadImageForCreatingPost();
         createPostPage.waitForLoadingImage();
         createPostPage.clickSubmitButton();
@@ -32,39 +33,29 @@ public class UserCanCreatePostTest extends BaseTest {
 
     @Test
     public void positivePostCreatingTestWithoutImage() {
-        String postTitle = "Create Post With Selenium";
-        String description = "Create Post With Selenium By Rudenko Vitalii";
-        String contentDescription = "Post has been successfully created without Image! ";
-        String email = "Virthunter@gmail.com";
-        String password = "Chatty12";
         loginPage = new LoginPage(driver);
-        loginPage.setDateLoginPage(email, password);
+        loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
         homePage.clickOnCreatePostButton();
         createPostPage = new CreatePostPage(driver);
         createPostPage.waitForLoadingAllFields();
-        createPostPage.setPostData(postTitle, description, contentDescription);
+        createPostPage.setPostData(POST_TITLE, POST_DESCRIPTION, CONTENT_DESCRIPTION_NO_IMAGE);
         createPostPage.clickSubmitButton();
     }
 
     @Test
     public void positivePostCreatingAndSaveLikeDraftTest() {
-        String postTitle = "Create Post With Selenium";
-        String description = "Create Post With Selenium By Rudenko Vitalii";
-        String contentDescription = "Post has been successfully created with Image! ";
-        String email = "Virthunter@gmail.com";
-        String password = "Chatty12";
         loginPage = new LoginPage(driver);
-        loginPage.setDateLoginPage(email, password);
+        loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
         homePage.clickOnCreatePostButton();
         createPostPage = new CreatePostPage(driver);
         createPostPage.waitForLoadingAllFields();
-        createPostPage.setPostData(postTitle, description, contentDescription);
+        createPostPage.setPostData(POST_TITLE, POST_DESCRIPTION, CONTENT_DESCRIPTION_IMAGE);
         createPostPage.uploadImageForCreatingPost();
         createPostPage.waitForLoadingImage();
         createPostPage.clickOnTheSaveAsDraftSwitcher();
@@ -76,20 +67,15 @@ public class UserCanCreatePostTest extends BaseTest {
 
     @Test
     public void positivePostCreatingWithImageForDeleting() {
-        String postTitle = "Create Post With Selenium For Deleting";
-        String description = "Create Post With Selenium By Rudenko Vitalii";
-        String contentDescription = "Post has been successfully created with Image for deleting!";
-        String email = "Virthunter@gmail.com";
-        String password = "Chatty12";
         loginPage = new LoginPage(driver);
-        loginPage.setDateLoginPage(email, password);
+        loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
         homePage.clickOnCreatePostButton();
         createPostPage = new CreatePostPage(driver);
         createPostPage.waitForLoadingAllFields();
-        createPostPage.setPostData(postTitle, description, contentDescription);
+        createPostPage.setPostData(POST_TITLE_FOR_DELETING, POST_DESCRIPTION, CONTENT_DESCRIPTION_IMAGE);
         createPostPage.uploadImageForDeletingPost();
         createPostPage.waitForLoadingImage();
         createPostPage.clickSubmitButton();

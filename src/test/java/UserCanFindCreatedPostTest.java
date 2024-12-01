@@ -11,11 +11,10 @@ public class UserCanFindCreatedPostTest extends BaseTest {
     HomePage homePage;
     MyPostsPage myPostsPage;
     OnePostPage onePostPage;
-
+    public static final String POST_TITLE = "Create Post With Selenium";
 
     @Test
     public void userCanFindThePostByName() {
-        String nameThePost = "Create Post With Selenium";
         loginPage = new LoginPage(driver);
         loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
@@ -26,14 +25,13 @@ public class UserCanFindCreatedPostTest extends BaseTest {
         myPostsPage.allListOfPostsIsVisible();
         int countOfPosts = myPostsPage.getCountOfPosts();
         assertEquals(5, countOfPosts);
-        myPostsPage.findMyPostByNameAndClick(nameThePost);
+        myPostsPage.findMyPostByNameAndClick(POST_TITLE);
         onePostPage = new OnePostPage(driver);
-        assertEquals(nameThePost, onePostPage.getNameOfPost());
+        assertEquals(POST_TITLE, onePostPage.getNameOfPost());
     }
 
     @Test
     public void userCanDeleteThePostByNameAndCheckDeleting() {
-        String nameThePost = "Create Post With Selenium";
         loginPage = new LoginPage(driver);
         loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
@@ -42,14 +40,14 @@ public class UserCanFindCreatedPostTest extends BaseTest {
         homePage.clickOnMyPostsSwitcher();
         myPostsPage = new MyPostsPage(driver);
         myPostsPage.allListOfPostsIsVisible();
-        myPostsPage.findMyPostByNameAndClick(nameThePost);
+        myPostsPage.findMyPostByNameAndClick(POST_TITLE);
         onePostPage = new OnePostPage(driver);
-        assertEquals(nameThePost, onePostPage.getNameOfPost());
+        assertEquals(POST_TITLE, onePostPage.getNameOfPost());
         onePostPage.clickDeleteButton();
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.homePageIsVisible());
         homePage.clickOnMyPostsSwitcher();
         myPostsPage.allListOfPostsIsVisible();
-        assertTrue(myPostsPage.findDeletedPost(nameThePost));
+        assertTrue(myPostsPage.findDeletedPost(POST_TITLE));
     }
 }

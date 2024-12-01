@@ -10,10 +10,8 @@ public class MyDraftsTests extends BaseTest {
 
     @Test
     public void myDraftsPageIsEmptyTest() {
-        String email = "Virthunter@gmail.com";
-        String password = "Chatty12";
         loginPage = new LoginPage(driver);
-        loginPage.setDateLoginPage(email, password);
+        loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
@@ -25,10 +23,8 @@ public class MyDraftsTests extends BaseTest {
 
     @Test
     public void myDraftsPageIsNotEmptyTest() {
-        String email = "Virthunter@gmail.com";
-        String password = "Chatty12";
         loginPage = new LoginPage(driver);
-        loginPage.setDateLoginPage(email, password);
+        loginPage.setDateLoginPage(VALID_EMAIL, VALID_PASSWORD);
         homePage = new HomePage(driver);
         homePage.waitForLoadingHomePage();
         assertTrue(homePage.createPostTitleIsDisplayed());
