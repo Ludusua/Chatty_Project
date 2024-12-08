@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserCanCreatePostTest extends BaseTest {
@@ -29,6 +28,9 @@ public class UserCanCreatePostTest extends BaseTest {
         createPostPage.uploadImageForCreatingPost();
         createPostPage.waitForLoadingImage();
         createPostPage.clickSubmitButton();
+        assertTrue(homePage.userImageIsDisplayed());
+
+
     }
 
     @Test
@@ -43,6 +45,7 @@ public class UserCanCreatePostTest extends BaseTest {
         createPostPage.waitForLoadingAllFields();
         createPostPage.setPostData(POST_TITLE, POST_DESCRIPTION, CONTENT_DESCRIPTION_NO_IMAGE);
         createPostPage.clickSubmitButton();
+        assertTrue(homePage.userImageIsDisplayed());
     }
 
     @Test
@@ -63,6 +66,7 @@ public class UserCanCreatePostTest extends BaseTest {
         homePage.clickOnMyDrafts();
         myDraftsPage = new MyDraftsPage(driver);
         myDraftsPage.waitForLoadingMyDraftsPage();
+        assertTrue(homePage.userImageIsDisplayed());
     }
 
     @Test
@@ -79,5 +83,6 @@ public class UserCanCreatePostTest extends BaseTest {
         createPostPage.uploadImageForDeletingPost();
         createPostPage.waitForLoadingImage();
         createPostPage.clickSubmitButton();
+        assertTrue(homePage.userImageIsDisplayed());
     }
 }

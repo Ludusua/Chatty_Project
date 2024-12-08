@@ -5,11 +5,6 @@ import org.openqa.selenium.support.FindBy;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class HomePage extends BasePage {
-
-    public HomePage(WebDriver driver) {
-        super(driver);
-    }
-
     @FindBy(xpath = "//*[@class='user__img']")
     private WebElement userImage;
     @FindBy(xpath = "//p[contains(text(),'Create a post')]")
@@ -26,6 +21,10 @@ public class HomePage extends BasePage {
     private WebElement createdForDeletingPost;
     @FindBy(xpath = "//*[@for='myPostsId']")
     private WebElement myPostsSwitcher;
+
+    public HomePage(WebDriver driver) {
+        super(driver);
+    }
 
     public void clickOnMyPostsSwitcher() {
         myPostsSwitcher.isDisplayed();
@@ -46,6 +45,11 @@ public class HomePage extends BasePage {
         getWait().forVisibility(createPostTitle);
         assertTrue(createPostTitle.isDisplayed());
     }
+    public boolean userImageIsDisplayed() {
+        assertTrue(userImage.isDisplayed());
+        return true;
+    }
+
 
     public boolean createPostTitleIsDisplayed() {
         return createPostTitle.isDisplayed();

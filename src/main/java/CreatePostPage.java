@@ -2,13 +2,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CreatePostPage extends BasePage {
-    public CreatePostPage(WebDriver driver) {
-        super(driver);
-    }
-
     private static final String FILE_SEPARATOR = System.getProperty("file.separator");
     private static final String ABSOLUTEPATHFORCREATING = "C:" + FILE_SEPARATOR + "Users" + FILE_SEPARATOR + "Dell" + FILE_SEPARATOR + "IdeaProjects" + FILE_SEPARATOR + "Chatty_Project" + FILE_SEPARATOR + "src" + FILE_SEPARATOR + "main" + FILE_SEPARATOR + "resources" + FILE_SEPARATOR + "books.png";
     private static final String ABSOLUTEPATHFORDELETING = "C:" + FILE_SEPARATOR + "Users" + FILE_SEPARATOR + "Dell" + FILE_SEPARATOR + "IdeaProjects" + FILE_SEPARATOR + "Chatty_Project" + FILE_SEPARATOR + "src" + FILE_SEPARATOR + "main" + FILE_SEPARATOR + "resources" + FILE_SEPARATOR + "DeleteButton.png";
@@ -27,6 +24,10 @@ public class CreatePostPage extends BasePage {
     @FindBy(xpath = "//*[@data-test='uploaded-image']")
     private WebElement uploadedImage;
 
+    public CreatePostPage(WebDriver driver) {
+        super(driver);
+    }
+
     public void waitForLoadingAllFields() {
         getWait().forVisibility(titleInputField);
         assertTrue(titleInputField.isDisplayed());
@@ -34,6 +35,12 @@ public class CreatePostPage extends BasePage {
         assertTrue(descriptionInputField.isDisplayed());
         getWait().forVisibility(contentDescriptionInputField);
         assertTrue(contentDescriptionInputField.isDisplayed());
+    }
+    public boolean fieldsAreNotVisible() {
+        assertFalse(titleInputField.isEnabled());
+        assertFalse(descriptionInputField.isEnabled());
+        assertFalse(contentDescriptionInputField.isEnabled());
+        return true;
     }
 
     public void waitForLoadingImage() {

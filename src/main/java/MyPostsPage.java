@@ -5,11 +5,6 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class MyPostsPage extends BasePage {
-    public MyPostsPage(WebDriver driver) {
-        super(driver);
-    }
-
-
     @FindBy(xpath = "//h3[normalize-space()='Create Post With Selenium For Deleting']")
     private WebElement nameOfPost;
     @FindBy(xpath = "//p[normalize-space()='18.11.2024']")
@@ -18,6 +13,9 @@ public class MyPostsPage extends BasePage {
     private List<WebElement> postsTitleList;
     @FindBy(xpath = "//h3[normalize-space()='Create Post With Selenium For Deleting']")
     private WebElement nameOfPostDeleting;
+    public MyPostsPage(WebDriver driver) {
+        super(driver);
+    }
 
     public int getCountOfPosts() {
         return postsTitleList.size();

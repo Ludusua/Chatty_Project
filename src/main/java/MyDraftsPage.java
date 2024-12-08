@@ -3,14 +3,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MyDraftsPage extends BasePage {
-    public MyDraftsPage(WebDriver driver) {
-        super(driver);
-    }
-
     @FindBy(xpath = "//p[contains(text(),'My drafts')]")
     private WebElement myDraftsTitle;
     @FindBy(xpath = "//p[contains(text(),'Here can be your posts...')]")
     private WebElement emptyDraftsMessage;
+
+    public MyDraftsPage(WebDriver driver) {
+        super(driver);
+    }
 
     public boolean emptyDraftsMessageIsDisplayed() {
         return emptyDraftsMessage.isDisplayed();
